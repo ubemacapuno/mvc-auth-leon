@@ -47,8 +47,7 @@ module.exports = {
     //PUT/Update for switching followUp to "Yes"
     markFollowUpComplete: async (req, res)=>{
         try{
-            const id = {_id:req.body.todoIdFromJSFile}
-            await Contact.findOneAndUpdate(id,{
+            await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
                 followUp: "Yes"
             })
             console.log('followUp marked "Yes"')
@@ -61,11 +60,10 @@ module.exports = {
     //PUT/Update for switching followUp to "No"
     markFollowUpIncomplete: async (req, res)=>{
         try{
-            const id = {_id:req.body.todoIdFromJSFile}
-            await Contact.findOneAndUpdate(id,{
+            await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
                 followUp: "No"
             })
-            console.log({_id:req.body.todoIdFromJSFile})
+            console.log({_id:req.body.contactIdFromJSFile})
             console.log('followUp marked "No"')
             res.json('followUp marked "No"')
         }catch(err){
@@ -78,6 +76,7 @@ module.exports = {
         console.log(req.body.contactIdFromJSFile)
         try{
             await Contact.findOneAndDelete({_id:req.body.contactIdFromJSFile})
+            console.log({_id:req.body.contactIdFromJSFile})
             console.log('Deleted Contact')
             res.json('Deleted It')
         }catch(err){
