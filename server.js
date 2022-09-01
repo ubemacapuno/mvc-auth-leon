@@ -40,6 +40,7 @@ app.use(flash())
   
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
+app.use('/contacts', contactRoutes) //Add Routes for /contacts
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, check PORT 8500!')
