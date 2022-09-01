@@ -6,10 +6,10 @@ module.exports = {
     //This is the GET/Read request controller for grabbing contacts from db (contactItems: contacts)
     //and for grabbing the total from db (total: totalContacts)
     getContacts: async (req,res)=>{
-        // console.log(req.user)
+        console.log(req.user)
         try{
-            const contacts = await Contact.find({}) //If you pass {}, then it grabs ALL the 'objects' in Contact db
-            const totalContacts = await Contact.countDocuments({}) //If you pass {}, then it counts ALL objects in db
+            const contacts = await Contact.find({userId:req.user.id}) 
+            const totalContacts = await Contact.countDocuments({userId:req.user.id})
             res.render('contacts.ejs', 
             {
                 contactItems: contacts, 
@@ -35,7 +35,8 @@ module.exports = {
                     followUp: req.body.followUp,
                     addedOnLinkedIn: req.body.addedOnLinkedIn,
                     addedOnTwitter: req.body.addedOnTwitter,
-                    dateContactCreated: req.body.dateContactCreated
+                    dateContactCreated: req.body.dateContactCreated,
+                    userId: req.user.id
                 })
             console.log('Contact has been added!')
             res.redirect('/contacts')
@@ -47,9 +48,11 @@ module.exports = {
     //PUT/Update for switching followUp to "Yes"
     markFollowUpComplete: async (req, res)=>{
         try{
-            await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
+            const id = req.params.id;
+            await Contact.findOneAndUpdate(id,{
                 followUp: "Yes"
             })
+            console.log(`ID is ${id}`)
             console.log('followUp marked "Yes"')
             res.json('followUp marked "Yes"')
         }catch(err){
@@ -60,10 +63,11 @@ module.exports = {
     //PUT/Update for switching followUp to "No"
     markFollowUpIncomplete: async (req, res)=>{
         try{
-            await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
+            const id = req.params.id;
+            await Contact.findOneAndUpdate(id,{
                 followUp: "No"
             })
-            console.log({_id:req.body.contactIdFromJSFile})
+            console.log(`ID is ${id}`)
             console.log('followUp marked "No"')
             res.json('followUp marked "No"')
         }catch(err){
@@ -76,7 +80,6 @@ module.exports = {
         console.log(req.body.contactIdFromJSFile)
         try{
             await Contact.findOneAndDelete({_id:req.body.contactIdFromJSFile})
-            console.log({_id:req.body.contactIdFromJSFile})
             console.log('Deleted Contact')
             res.json('Deleted It')
         }catch(err){

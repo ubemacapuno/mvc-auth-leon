@@ -39,8 +39,12 @@ const ContactSchema = new mongoose.Schema({
   },
   dateContactCreated: {
     type: Date,
-    default: Date.now
-}
+    default: Date.now,
+  },
+  userId: {
+    type: String,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Contact', ContactSchema)
