@@ -51,7 +51,7 @@ module.exports = {
             await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
                 followUp: "Yes"
             })
-            console.log(`ID is ${{_id:req.body.contactIdFromJSFile}}`)
+            console.log({_id:req.body.contactIdFromJSFile})
             console.log('followUp marked "Yes"')
             res.json('followUp marked "Yes"')
         }catch(err){
@@ -65,7 +65,7 @@ module.exports = {
             await Contact.findOneAndUpdate({_id:req.body.contactIdFromJSFile},{
                 followUp: "No"
             })
-            console.log(`ID is ${{_id:req.body.contactIdFromJSFile}}`)
+            console.log({_id:req.body.contactIdFromJSFile})
             console.log('followUp marked "No"')
             res.json('followUp marked "No"')
         }catch(err){
