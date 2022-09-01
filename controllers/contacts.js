@@ -1,12 +1,15 @@
 const Contact = require('../models/Contact') //Declare variable Contact which will come from the Contact model
-const Todo = require('../models/Todo')//For debugging purposes! Remove when done
+// const Todo = require('../models/Todo')
 
 module.exports = {
+
+    //This is the GET/Read request controller for grabbing contacts from db (contactItems: contacts)
+    //and for grabbing the total from db (total: totalContacts)
     getContacts: async (req,res)=>{
         // console.log(req.user)
         try{
-            const contacts = await Contact.find({userId:req.user.id})
-            const totalContacts = await Contact.countDocuments({})
+            const contacts = await Contact.find({}) //If you pass {}, then it grabs ALL the 'objects' in Contact db
+            const totalContacts = await Contact.countDocuments({}) //If you pass {}, then it counts ALL objects in db
             res.render('contacts.ejs', 
             {
                 contactItems: contacts, 
@@ -17,7 +20,8 @@ module.exports = {
             console.log(err)
         }
     },
-    //Reference Contact model. This is your POST request controller for creating a contact.
+
+    //Reference Contact model. This is the POST request controller for creating a contact.
     createContact: async (req, res)=>{
         try{
             await Contact.create(
@@ -39,33 +43,42 @@ module.exports = {
             console.log(err)
         }
     },
-    // markComplete: async (req, res)=>{
-    //     try{
-    //         await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-    //             completed: true
-    //         })
-    //         console.log('Marked Complete')
-    //         res.json('Marked Complete')
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // },
-    // markIncomplete: async (req, res)=>{
-    //     try{
-    //         await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-    //             completed: false
-    //         })
-    //         console.log('Marked Incomplete')
-    //         res.json('Marked Incomplete')
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // },
-    deleteContact: async (req, res)=>{
-        console.log(req.body.todoIdFromJSFile)
+
+    //PUT/Update for switching followUp to "Yes"
+    markFollowUpComplete: async (req, res)=>{
         try{
-            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
-            console.log('Deleted Todo')
+            const id = {_id:req.body.todoIdFromJSFile}
+            await Contact.findOneAndUpdate(id,{
+                followUp: "Yes"
+            })
+            console.log('followUp marked "Yes"')
+            res.json('followUp marked "Yes"')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+    //PUT/Update for switching followUp to "No"
+    markFollowUpIncomplete: async (req, res)=>{
+        try{
+            const id = {_id:req.body.todoIdFromJSFile}
+            await Contact.findOneAndUpdate(id,{
+                followUp: "No"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('followUp marked "No"')
+            res.json('followUp marked "No"')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+    //DELETE Contact
+    deleteContact: async (req, res)=>{
+        console.log(req.body.contactIdFromJSFile)
+        try{
+            await Contact.findOneAndDelete({_id:req.body.contactIdFromJSFile})
+            console.log('Deleted Contact')
             res.json('Deleted It')
         }catch(err){
             console.log(err)

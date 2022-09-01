@@ -9,18 +9,11 @@
     </head>
     <body>
         <h1>Contacts List</h1>
-        <ul>
-        <% contactItems.forEach( el => { %>
-                <li class='todoItem' data-id='<%=el._id%>'>
-                    <span class='del'> Delete </span>
-                </li>
-        <% }) %>    
-        </ul>
 
         <h2><%= user.userName %> has <%= total %> total contacts.</h2>
 
         <form action="/contacts/createContact" method='POST' class="contact-form">
-            <h3>Contact List Form</h3>
+            <h3>Contact List Form - Add a New Contact!</h3>
             <label>First Name: </label>
             <input type="text" placeholder="First Name" name='firstName' required>
 
@@ -60,20 +53,77 @@
             <button type="submit"><span>Add Contact Information</span></button>
         </form>
 
+        
+
         <a href="/logout">Logout</a>
 
-        <!-- <script src="js/main.js"></script> -->
+        <!-- Loop through and display all capas currently in database: -->
+        <section class="contact-collection">
+            <ul>
+                <% contactItems.forEach(contact => {%>
+                    <li class='todoItem' data-id='<%=contact._id%>'>
+                        <div>
+                            <%= `${contact.firstName} ${contact.lastName}` %>
+                        </div>
+                        <div>
+                            <p>Connected on <%= contact.date.toDateString()%></p>
+                            <p><%= contact.companyName%></p>
+                            <p><%= contact.spark%></p>
+                            <p><%= contact.email%></p>
+
+                            <!-- The following fields will be PUT/UPDATEable: -->
+
+                            <!-- Followed-Up -->
+                            <p id="follow-up" class='<%= contact.followUp === "Yes" ? 'complete' : 'incomplete'%>'>Followed Up: <%= contact.followUp%></p>
+
+                            <!-- Added On LinkedIn -->
+                            <p id="added-on-linkedin" class='<%= contact.addedOnLinkedIn === "Yes" ? 'complete' : 'incomplete'%>'>Added on LinkedIn: <%= contact.addedOnLinkedIn%></p>
+
+                            <!-- Added On Twitter -->
+                            <p id="added-on-twitter" class='<%= contact.addedOnTwitter === "Yes" ? 'complete' : 'incomplete'%>'>Added on Twitter: <%= contact.addedOnTwitter%></p>
+
+                            <p class='todoItem' data-id='<%=contact._id%>'>
+                                <span class='del'> Delete </span>
+                            </p>
+                        </div>
+                    </li>
+                <% }) %>
+        </section>
+        <!-- Link to mainContact.js for event listers!! -->
+        <script src="js/mainContact.js"></script> 
     </body>
 </html>
 <style>
     .contact-form{
-        width: 200px;
+        width: 500px;
         display: flex;
         flex-direction: column;
     }
 
+    textarea { 
+        resize: vertical; 
+    }
+
     .contact-form input, .contact-form select, .contact-form button{
         margin-bottom: 1rem;
+    }
+
+    /* classes for complete and incomplete */
+    .complete {
+        background-color: green;
+        color: white;
+    }
+    
+    .incomplete {
+        background-color: red;
+        color: white;
+    }
+
+    .del {
+        border: 1px solid gray;
+        cursor: pointer;
+        color: white;
+        background-color: black;
     }
 
 </style>

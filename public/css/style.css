@@ -1,4 +1,4 @@
-/* h1{
+h1{
     color: red;
 }
 .completed{
@@ -7,54 +7,4 @@
 }
 .not{
     text-decoration: underline;
-} */
-
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
-
-:root {
-    font-family: 'Inconsolata', monospace;
-    --background-color: #6c6a93;
-    --header-color: #09FFD4;
-    --text-color: #3A3CA3;
-    --bullet-color: #77F711;
-    --pending-color: #411b22;
-    --left-to-do-color: #F0AC26;
-}
-
-body{ /*Selects the body tag*/
-    background-color: var(--background-color); /*changes background-color*/
-}
-h1{ /*Selects h1 body tag*/
-    color: var(--header-color); /*changes color*/
-}
-h2,span {
-    color: var(--text-color);
-}
-ul {
-    list-style: none; /* Remove default bullets */
-}
-.left-to-do{
-    color: var(--left-to-do-color);
-}
-li {
-    padding: 0.5rem 0;
-}
-li span {
-    color: var(--pending-color);
-}
-.fa-trash {
-    padding: 0 0.5rem;
-    cursor: pointer;
-}
-ul li::before {
-    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-    color: var(--bullet-color); /* Change the color */
-    font-weight: bold; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em; /* Also needed for space (tweak if needed) */
-}
-.completed{/*Selects completed class*/
-    color: var(--bullet-color);  /*changes background-color*/
-    text-decoration: line-through; /*adds line-through*/
 }
