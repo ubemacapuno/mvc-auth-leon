@@ -9,6 +9,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
+const contactRoutes = require('./routes/contacts') //Declare contactRoutes variable, requiring './routes/contacts'
 
 require('dotenv').config({path: './config/.env'})
 

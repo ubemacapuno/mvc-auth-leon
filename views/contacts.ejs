@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Page</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Contacts List</h1>
+        <ul>
+        <% contactItems.forEach( el => { %>
+                <li class='todoItem' data-id='<%=el._id%>'>
+                    <span class='del'> Delete </span>
+                </li>
+        <% }) %>    
+        </ul>
+
+        <h2><%= user.userName %> has <%= total %> total contacts.</h2>
+
+        <form action="/contacts/createContact" method='POST' class="contact-form">
+            <h3>Contact List Form</h3>
+            <label>First Name: </label>
+            <input type="text" placeholder="First Name" name='firstName' required>
+
+            <label>Last Name:</label>
+            <input type="text" placeholder="Last Name" name='lastName' required>
+
+            <label>Date Connected:</label>
+            <input type="date" name='date' required>
+
+            <label>Company Name:</label>
+            <input type="text" placeholder="Company Name" name='companyName' required>
+
+            <label>Spark:</label>
+            <textarea name="spark" rows="5" cols="50" required></textarea>
+
+            <label>Email:</label>
+            <input type="email" placeholder="Contact Email" name='email' required>
+
+            <label>Follow-Up?</label>
+            <select name="followUp" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on LinkedIN?</label>
+            <select name="addedOnLinkedIn" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on Twitter?</label>
+            <select name="addedOnTwitter" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <button type="submit"><span>Add Contact Information</span></button>
+        </form>
+
+        <a href="/logout">Logout</a>
+
+        <!-- <script src="js/main.js"></script> -->
+    </body>
+</html>
+<style>
+    .contact-form{
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-form input, .contact-form select, .contact-form button{
+        margin-bottom: 1rem;
+    }
+
+</style>

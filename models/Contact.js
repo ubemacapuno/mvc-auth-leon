@@ -33,7 +33,7 @@ const ContactSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  addedOntwitter: {
+  addedOnTwitter: {
     type: String,
     required: true,
   },
