@@ -1,37 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <div>
-                    <%= `${el.firstName}` %>
-                </div>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-    </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Contact List</h1>
+        <h2>Hey <%= user.userName %>, you have <%= left %> contacts!</h2>
+        <ul>
+        <% todos.forEach( el => { %>
+                <li class='todoItem' data-id='<%=el._id%>'>
+                    <div>
+                        <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
+                        <span>Email: <%= el.email %></span>
+                        <span>Date Connected: <%= el.date.toDateString() %></span>
+                        <span>Company: <%= el.companyName %></span>
+                        <span>Spark: <%= el.spark %></span>
+                    </div>
+                    <span class='del'>Delete</span>
+                </li>
+        <% }) %>    
+        </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+        <form action="/todos/createTodo" class="contact-form" method='POST'>          
 
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-        <label>First Name: </label>
-        <input type="text" placeholder="First Name" name='firstName' required>
-    </form>
+            <label>First Name: </label>
+            <input type="text" placeholder="First Name" name='firstName' required>
 
-    <a href="/logout">Logout</a>
+            <label>Last Name: </label>
+            <input type="text" placeholder="Last Name" name='lastName' required>
 
-    <script src="js/main.js"></script>
-</body>
+            <label>Email:</label>
+            <input type="email" placeholder="Contact Email" name='email' required>
+
+            <label>Date Connected:</label>
+            <input type='date' name='date' required>
+
+            <label>Company Name:</label>
+            <input type="text" placeholder="Company Name" name='companyName' required>
+
+            <label>Spark:</label>
+            <textarea name="spark" rows="5" cols="50" required></textarea>
+
+            
+
+
+            <input type="submit">
+        </form>
+
+        <a href="/logout">Logout</a>
+
+        <script src="js/main.js"></script>
+    </body>
 </html>
+
+<style>
+    span {
+        display: block;
+    }
+
+    .del {
+        color: white;
+        border: 1px solid white;
+        width: 60px;
+        text-align: center;
+        background-color: black;
+        margin: 1rem 0;
+        padding: 0.25rem;
+        cursor: pointer;
+    }
+
+    .contact-form{
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    textarea { 
+        resize: vertical; 
+    }
+
+    .contact-form input, .contact-form select, .contact-form button{
+        margin-bottom: 1rem;
+    }
+
+    /* classes for complete and incomplete */
+    .complete {
+        color: lime;
+    }
+    
+    .incomplete {
+        color: rgb(121, 0, 0);
+    }
+
+</style>
