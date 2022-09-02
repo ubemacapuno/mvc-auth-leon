@@ -12,20 +12,21 @@
         <h2>Hey <%= user.userName %>, you have <%= left %> contacts!</h2>
         <ul>
         <% todos.forEach( el => { %>
-                <li class='todoItem' data-id='<%=el._id%>'>
-                    <div>
-                        <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
-                        <span>Email: <%= el.email %></span>
-                        <span>Date Connected: <%= el.date.toDateString() %></span>
-                        <span>Company: <%= el.companyName %></span>
-                        <span>Spark: <%= el.spark %></span>
-                        <span>Followed Up: <%= el.followUp %></span>
-                        <span>Added on LinkedIn: <%= el.addedOnLinkedIn %></span>
-                        <span>Added on Twitter: <%= el.addedOnTwitter %></span>
-                    </div>
-                    <span class='del'>Delete</span>
-                </li>
-        <% }) %>    
+            <li class='todoItem' data-id='<%=el._id%>'>
+                <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
+                <span>Email: <%= el.email %></span>
+                <span>Date Connected: <%= el.date.toDateString() %></span>
+                <span>Company: <%= el.companyName %></span>
+                <span>Spark: <%= el.spark %></span>
+                <span>Followed Up: <%= el.followUp %></span>
+                <span>Added on LinkedIn: <%= el.addedOnLinkedIn %></span>
+                <span>Added on Twitter: <%= el.addedOnTwitter %></span>
+                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                
+                <!--Delete element-->
+                <span class='del'> Delete </span>
+            </li>
+    <% }) %>    
         </ul>
 
         <form action="/todos/createTodo" class="contact-form" method='POST'>          
@@ -66,6 +67,7 @@
                 <option value="Yes">Yes</option>
             </select>
 
+            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
 
             <input type="submit">
         </form>
@@ -107,11 +109,11 @@
     }
 
     /* classes for complete and incomplete */
-    .complete {
+    .completed {
         color: lime;
     }
     
-    .incomplete {
+    .not {
         color: rgb(121, 0, 0);
     }
 
