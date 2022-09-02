@@ -86,6 +86,32 @@ module.exports = {
         }
     },
 
+    // markYesLinkedin, markNoLinkedin controllers
+
+    markYesLinkedin: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                addedOnLinkedIn: "Yes"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked Yes LinkedIn')
+            res.json('Marked Yes LinkedIn')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markNoLinkedin: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                addedOnLinkedIn: "No"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked No LinkedIn')
+            res.json('Marked No LinkedIn')
+        }catch(err){
+            console.log(err)
+        }
+    },
 
 
     deleteTodo: async (req, res)=>{

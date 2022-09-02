@@ -19,17 +19,16 @@
                 <span>Company: <%= el.companyName %></span>
                 <span>Spark: <%= el.spark %></span>
 
+                <!-- If value is "yes", then apply 'yes-to-follow-up' class, otherwise no-follow-up-->
+                <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span>
 
-                <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Followed Up</span>
+                <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added in LinkedIn</span>
 
-
-
-
-
-
-                <span>Added on LinkedIn: <%= el.addedOnLinkedIn %></span>
                 <span>Added on Twitter: <%= el.addedOnTwitter %></span>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+
+
+                <!-- Todo Task -->
+                <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> -->
 
                 <!--Delete element-->
                 <span class='del'> Delete </span>
@@ -75,7 +74,8 @@
                 <option value="Yes">Yes</option>
             </select>
 
-            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <!-- Todo task -->
+            <!-- <input type="text" placeholder="Enter Todo Item" name='todoItem'> -->
 
             <input type="submit">
         </form>
@@ -117,16 +117,20 @@
     }
 
     /* classes for complete and incomplete */
-    .completed, .yes-follow-up {
+    .completed, .yes-follow-up, .yes-linkedin {
         color: lime;
     }
 
-    .not, .no-follow-up {
+    .not, .no-follow-up, .no-linkedin {
         color: rgb(121, 0, 0);
     }
 
-    .no-follow-up::after {
+    .no-follow-up::after, .no-linkedin::after {
         content: ' - Pending'
+    }
+
+    .yes-follow-up::after, .yes-linkedin::after {
+        content: ' - Completed!'
     }
 
 </style>
