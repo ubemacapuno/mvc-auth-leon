@@ -75,7 +75,8 @@ module.exports = {
 
     //DELETE Contact
     deleteContact: async (req, res)=>{
-        console.log(req.body.contactIdFromJSFile)
+        // console.log(req.body.contactIdFromJSFile)
+        console.log("Testing!")
         try{
             await Contact.findOneAndDelete({_id:req.body.contactIdFromJSFile})
             console.log('Deleted Contact')

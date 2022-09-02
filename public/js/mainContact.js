@@ -24,6 +24,7 @@ async function deleteContact(){
                 'contactIdFromJSFile': contactId
             })
         })
+        console.log("Anything other than")
         const data = await response.json()
         console.log(data)
         location.reload()
