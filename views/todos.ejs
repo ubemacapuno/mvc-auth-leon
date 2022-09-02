@@ -12,6 +12,9 @@
     <ul>
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
+                <div>
+                    <%= `${el.firstName}` %>
+                </div>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='del'> Delete </span>
             </li>
@@ -23,6 +26,8 @@
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
+        <label>First Name: </label>
+        <input type="text" placeholder="First Name" name='firstName' required>
     </form>
 
     <a href="/logout">Logout</a>
