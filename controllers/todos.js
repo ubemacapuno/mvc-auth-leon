@@ -113,6 +113,34 @@ module.exports = {
         }
     },
 
+    // markYesTwitter, markTwitter controllers
+
+    markYesTwitter: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                addedOnTwitter: "Yes"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked Yes Twitter')
+            res.json('Marked Yes Twitter')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markNoTwitter: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                addedOnTwitter: "No"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked No Twitter')
+            res.json('Marked No Twitter')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+    // delete controller
 
     deleteTodo: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)

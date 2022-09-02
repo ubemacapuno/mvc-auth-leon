@@ -19,6 +19,10 @@ router.put('/markYesLinkedin', todosController.markYesLinkedin)
 
 router.put('/markNoLinkedin', todosController.markNoLinkedin)
 
+router.put('/markYesTwitter', todosController.markYesTwitter)
+
+router.put('/markNoTwitter', todosController.markNoTwitter)
+
 router.delete('/deleteTodo', todosController.deleteTodo)
 
 module.exports = router

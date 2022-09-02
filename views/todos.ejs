@@ -22,9 +22,11 @@
                 <!-- If value is "yes", then apply 'yes-to-follow-up' class, otherwise no-follow-up-->
                 <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span>
 
-                <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added in LinkedIn</span>
+                <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added on Linkedin</span>
 
-                <span>Added on Twitter: <%= el.addedOnTwitter %></span>
+                <span id='#twitter' class='<%= el.addedOnTwitter === "Yes" ? 'yes-twitter' : 'no-twitter'%>'>Added on Twitter</span>
+
+                <!-- <span>Added on Twitter: <%= el.addedOnTwitter %></span> -->
 
 
                 <!-- Todo Task -->
@@ -117,19 +119,19 @@
     }
 
     /* classes for complete and incomplete */
-    .completed, .yes-follow-up, .yes-linkedin {
+    .completed, .yes-follow-up, .yes-linkedin, .yes-twitter {
         color: lime;
     }
 
-    .not, .no-follow-up, .no-linkedin {
+    .not, .no-follow-up, .no-linkedin, .no-twitter {
         color: rgb(121, 0, 0);
     }
 
-    .no-follow-up::after, .no-linkedin::after {
+    .no-follow-up::after, .no-linkedin::after, .no-twitter::after {
         content: ' - Pending'
     }
 
-    .yes-follow-up::after, .yes-linkedin::after {
+    .yes-follow-up::after, .yes-linkedin::after, .yes-twitter::after {
         content: ' - Completed!'
     }
 

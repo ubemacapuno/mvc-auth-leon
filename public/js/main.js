@@ -10,6 +10,10 @@ const yesFollowUp = document.querySelectorAll('span.yes-follow-up')
 const noLinkedin = document.querySelectorAll('span.no-linkedin')
 const yesLinkedin = document.querySelectorAll('span.yes-linkedin')
 
+//DOM access for markYesTwitter, markNoTwitter
+const noTwitter = document.querySelectorAll('span.no-twitter')
+const yesTwitter = document.querySelectorAll('span.yes-twitter')
+
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
@@ -38,6 +42,15 @@ Array.from(yesLinkedin).forEach((el)=>{
 
 Array.from(noLinkedin).forEach((el)=>{
     el.addEventListener('click', markYesLinkedin)
+})
+
+//Event Listeners for markYesLinkedin, markNoLinkedin
+Array.from(yesTwitter).forEach((el)=>{
+    el.addEventListener('click', markNoTwitter)
+})
+
+Array.from(noTwitter).forEach((el)=>{
+    el.addEventListener('click', markYesTwitter)
 })
 
 async function deleteTodo(){
@@ -156,6 +169,44 @@ async function markNoLinkedin(){
     const todoId = this.parentNode.dataset.id
     try{
         const response = await fetch('todos/markNoLinkedin', {
+            method: 'put',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'todoIdFromJSFile': todoId
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
+// markYesTwitter, markNoTwitter functions
+
+async function markYesTwitter(){
+    const todoId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('todos/markYesTwitter', {
+            method: 'put',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'todoIdFromJSFile': todoId
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function markNoTwitter(){
+    const todoId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('todos/markNoTwitter', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
