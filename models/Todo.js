@@ -19,11 +19,11 @@ const TodoSchema = new mongoose.Schema({
   },
   todo: {
     type: String,
-    required: true,
+    required: false,
   },
   completed: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   companyName: {
     type: String,
