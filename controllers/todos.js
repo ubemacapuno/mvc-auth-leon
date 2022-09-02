@@ -24,6 +24,9 @@ module.exports = {
                     companyName: req.body.companyName,
                     spark: req.body.spark,
                     email: req.body.email,
+                    followUp: req.body.followUp,
+                    addedOnLinkedIn: req.body.addedOnLinkedIn,
+                    addedOnTwitter: req.body.addedOnTwitter,
                 })
             console.log('Todo has been added!')
             res.redirect('/todos')

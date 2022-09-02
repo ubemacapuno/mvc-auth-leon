@@ -19,6 +19,9 @@
                         <span>Date Connected: <%= el.date.toDateString() %></span>
                         <span>Company: <%= el.companyName %></span>
                         <span>Spark: <%= el.spark %></span>
+                        <span>Followed Up: <%= el.followUp %></span>
+                        <span>Added on LinkedIn: <%= el.addedOnLinkedIn %></span>
+                        <span>Added on Twitter: <%= el.addedOnTwitter %></span>
                     </div>
                     <span class='del'>Delete</span>
                 </li>
@@ -45,7 +48,23 @@
             <label>Spark:</label>
             <textarea name="spark" rows="5" cols="50" required></textarea>
 
-            
+            <label>Follow-Up?</label>
+            <select name="followUp" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on LinkedIN?</label>
+            <select name="addedOnLinkedIn" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on Twitter?</label>
+            <select name="addedOnTwitter" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
 
 
             <input type="submit">

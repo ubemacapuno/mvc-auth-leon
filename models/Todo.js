@@ -29,6 +29,18 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  followUp: {
+    type: String,
+    required: true,
+  },
+  addedOnLinkedIn: {
+    type: String,
+    required: true,
+  },
+  addedOnTwitter: {
+    type: String,
+    required: true,
+  },
   userId: {
     type: String,
     required: true
