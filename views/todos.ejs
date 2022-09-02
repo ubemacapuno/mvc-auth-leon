@@ -18,11 +18,19 @@
                 <span>Date Connected: <%= el.date.toDateString() %></span>
                 <span>Company: <%= el.companyName %></span>
                 <span>Spark: <%= el.spark %></span>
-                <span>Followed Up: <%= el.followUp %></span>
+
+
+                <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Followed Up</span>
+
+
+
+
+
+
                 <span>Added on LinkedIn: <%= el.addedOnLinkedIn %></span>
                 <span>Added on Twitter: <%= el.addedOnTwitter %></span>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                
+
                 <!--Delete element-->
                 <span class='del'> Delete </span>
             </li>
@@ -109,12 +117,16 @@
     }
 
     /* classes for complete and incomplete */
-    .completed {
+    .completed, .yes-follow-up {
         color: lime;
     }
-    
-    .not {
+
+    .not, .no-follow-up {
         color: rgb(121, 0, 0);
+    }
+
+    .no-follow-up::after {
+        content: ' - Pending'
     }
 
 </style>

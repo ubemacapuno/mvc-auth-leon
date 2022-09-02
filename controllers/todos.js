@@ -58,6 +58,36 @@ module.exports = {
             console.log(err)
         }
     },
+
+    // markYesFollowUp, markNoFollowUp controllers
+
+    markYesFollowUp: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                followUp: "Yes"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked Yes Follow Up')
+            res.json('Marked Yes Follow Up')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markNoFollowUp: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                followUp: "No"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked No Follow Up')
+            res.json('Marked No Follow Up')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+
+
     deleteTodo: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)
         try{
