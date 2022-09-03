@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="css/style.css">
+        <!--ICONS-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     </head>
     <body>
         <h1>Contact List</h1>
@@ -32,7 +35,9 @@
                 <!-- Todo Task -->
                 <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> -->
 
-                <!--Delete element-->
+                <!--Link for Memo-->
+                <a href="/edit/<%=el._id %>" class="edit">Memos for <%= el.firstName %> <span class="fas fa-external-link-alt"></span></a>        
+                <!--Delete element-->        
                 <span class='del'> Delete </span>
             </li>
     <% }) %>    
@@ -87,52 +92,3 @@
         <script src="js/main.js"></script>
     </body>
 </html>
-
-<style>
-    span {
-        display: block;
-    }
-
-    .del {
-        color: white;
-        border: 1px solid white;
-        width: 60px;
-        text-align: center;
-        background-color: black;
-        margin: 1rem 0;
-        padding: 0.25rem;
-        cursor: pointer;
-    }
-
-    .contact-form{
-        width: 500px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    textarea { 
-        resize: vertical; 
-    }
-
-    .contact-form input, .contact-form select, .contact-form button{
-        margin-bottom: 1rem;
-    }
-
-    /* classes for complete and incomplete */
-    .completed, .yes-follow-up, .yes-linkedin, .yes-twitter {
-        color: lime;
-    }
-
-    .not, .no-follow-up, .no-linkedin, .no-twitter {
-        color: rgb(121, 0, 0);
-    }
-
-    .no-follow-up::after, .no-linkedin::after, .no-twitter::after {
-        content: ' - Pending'
-    }
-
-    .yes-follow-up::after, .yes-linkedin::after, .yes-twitter::after {
-        content: ' - Completed!'
-    }
-
-</style>

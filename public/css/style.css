@@ -58,3 +58,49 @@ ul li::before {
     color: var(--bullet-color);  /*changes background-color*/
     text-decoration: line-through; /*adds line-through*/
 }
+
+span {
+    display: block;
+}
+
+.del {
+    color: white;
+    border: 1px solid white;
+    width: 60px;
+    text-align: center;
+    background-color: black;
+    margin: 1rem 0;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.contact-form{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea { 
+    resize: vertical; 
+}
+
+.contact-form input, .contact-form select, .contact-form button{
+    margin-bottom: 1rem;
+}
+
+/* classes for complete and incomplete */
+.completed, .yes-follow-up, .yes-linkedin, .yes-twitter {
+    color: lime;
+}
+
+.not, .no-follow-up, .no-linkedin, .no-twitter {
+    color: rgb(121, 0, 0);
+}
+
+.no-follow-up::after, .no-linkedin::after, .no-twitter::after {
+    content: ' - Pending'
+}
+
+.yes-follow-up::after, .yes-linkedin::after, .yes-twitter::after {
+    content: ' - Completed!'
+}
