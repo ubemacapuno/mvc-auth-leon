@@ -11,6 +11,47 @@
         <h1>Memos</h1>
         <h2>Hey <%= user.userName %>! Record Memos Here!</h2>
 
+        <form action="/memos/<%= memoItems._id %>" class="contact-form" method='POST'>          
+
+            <label>First Name: </label>
+            <input type="text" placeholder="First Name" name='firstName' required>
+
+            <label>Last Name: </label>
+            <input type="text" placeholder="Last Name" name='lastName' required>
+
+            <label>Email:</label>
+            <input type="email" placeholder="Contact Email" name='email' required>
+
+            <label>Date Connected:</label>
+            <input type='date' name='date' required>
+
+            <label>Company Name:</label>
+            <input type="text" placeholder="Company Name" name='companyName' required>
+
+            <label>Spark:</label>
+            <textarea name="spark" rows="5" cols="50" required></textarea>
+
+            <label>Follow-Up?</label>
+            <select name="followUp" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on LinkedIN?</label>
+            <select name="addedOnLinkedIn" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>Added on Twitter?</label>
+            <select name="addedOnTwitter" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <input type="submit">
+        </form>
+
         <a href="/logout">Logout</a>
 
         <script src="js/main.js"></script>
