@@ -2,6 +2,7 @@ const Todo = require('../models/Todo')
 
 module.exports = {
     getTodos: async (req,res)=>{
+        console.log("Reached controller for 'getTodos' ")
         console.log(req.user)
         try{
             const todoItems = await Todo.find({userId:req.user.id})
@@ -143,6 +144,7 @@ module.exports = {
     // delete controller
 
     deleteTodo: async (req, res)=>{
+        console.log("You have reached controller for deleteTodo")
         console.log(req.body.todoIdFromJSFile)
         try{
             await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})

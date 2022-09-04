@@ -7,87 +7,98 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/style.css">
         <!--ICONS-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Contact List</h1>
-        <h2>Hey <%= user.userName %>, you have <%= left %> contacts!</h2>
-        <ul>
-        <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
-                <span>Email: <%= el.email %></span>
-                <span>Date Connected: <%= el.date.toDateString() %></span>
-                <span>Company: <%= el.companyName %></span>
-                <span>Spark: <%= el.spark %></span>
+        <nav>
+            <h1>Contact List</h1>
+            <!--Link for Memo-->
+            <ul>
+                <li><a href="/memos" class="memos">Memos</a></li>
+                <li><a class="button" href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="flex-wrapper">
+                        
+           <section>
+                <h2>Hey <%= user.userName %>, you have <%= left %> contacts!</h2>
+                <ul>
+                <% todos.forEach( el => { %>
+                    <li class='todoItem' data-id='<%=el._id%>'>
+                        <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
+                        <span>Email: <%= el.email %></span>
+                        <span>Date Connected: <%= el.date.toDateString() %></span>
+                        <span>Company: <%= el.companyName %></span>
+                        <span>Spark: <%= el.spark %></span>
 
-                <!-- If value is "yes", then apply 'yes-to-follow-up' class, otherwise no-follow-up-->
-                <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span>
+                        <!-- If value is "yes", then apply 'yes-to-follow-up' class, otherwise no-follow-up-->
+                        <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span>
 
-                <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added on Linkedin</span>
+                        <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added on Linkedin</span>
 
-                <span id='#twitter' class='<%= el.addedOnTwitter === "Yes" ? 'yes-twitter' : 'no-twitter'%>'>Added on Twitter</span>
+                        <span id='#twitter' class='<%= el.addedOnTwitter === "Yes" ? 'yes-twitter' : 'no-twitter'%>'>Added on Twitter</span>
 
-                <!-- <span>Added on Twitter: <%= el.addedOnTwitter %></span> -->
+                        <!-- <span>Added on Twitter: <%= el.addedOnTwitter %></span> -->
 
 
-                <!-- Todo Task -->
-                <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> -->
+                        <!-- Todo Task -->
+                        <!-- <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> -->
 
-                <!--Link for Memo-->
-                <a href="/edit/<%=el._id %>" class="edit">Memos for <%= el.firstName %> <span class="fas fa-external-link-alt"></span></a>        
-                <!--Delete element-->        
-                <span class='del'> Delete </span>
-            </li>
-    <% }) %>    
-        </ul>
+                        <!--Delete element-->        
+                        <span class='del'> Delete </span>
+                    </li>
+                <% }) %>    
+                </ul>
+           </section>
 
-        <form action="/todos/createTodo" class="contact-form" method='POST'>          
+           <section class="contact-form">
+                <h2>Add Contacts</h2>
+                <form action="/todos/createTodo" class="contact-form" method='POST'>          
 
-            <label>First Name: </label>
-            <input type="text" placeholder="First Name" name='firstName' required>
+                    <label>First Name: </label>
+                    <input type="text" placeholder="First Name" name='firstName' required>
 
-            <label>Last Name: </label>
-            <input type="text" placeholder="Last Name" name='lastName' required>
+                    <label>Last Name: </label>
+                    <input type="text" placeholder="Last Name" name='lastName' required>
 
-            <label>Email:</label>
-            <input type="email" placeholder="Contact Email" name='email' required>
+                    <label>Email:</label>
+                    <input type="email" placeholder="Contact Email" name='email' required>
 
-            <label>Date Connected:</label>
-            <input type='date' name='date' required>
+                    <label>Date Connected:</label>
+                    <input type='date' name='date' required>
 
-            <label>Company Name:</label>
-            <input type="text" placeholder="Company Name" name='companyName' required>
+                    <label>Company Name:</label>
+                    <input type="text" placeholder="Company Name" name='companyName' required>
 
-            <label>Spark:</label>
-            <textarea name="spark" rows="5" cols="50" required></textarea>
+                    <label>Spark:</label>
+                    <textarea name="spark" rows="5" cols="50" required></textarea>
 
-            <label>Follow-Up?</label>
-            <select name="followUp" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
+                    <label>Follow-Up?</label>
+                    <select name="followUp" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
 
-            <label>Added on LinkedIN?</label>
-            <select name="addedOnLinkedIn" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
+                    <label>Added on LinkedIN?</label>
+                    <select name="addedOnLinkedIn" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
 
-            <label>Added on Twitter?</label>
-            <select name="addedOnTwitter" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
+                    <label>Added on Twitter?</label>
+                    <select name="addedOnTwitter" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
 
-            <!-- Todo task -->
-            <!-- <input type="text" placeholder="Enter Todo Item" name='todoItem'> -->
+                    <!-- Todo task -->
+                    <!-- <input type="text" placeholder="Enter Todo Item" name='todoItem'> -->
 
-            <input type="submit">
-        </form>
-
-        <a href="/logout">Logout</a>
+                    <input class="button" type="submit" value="Add">
+                </form>
+             </section>
+        </div>
+        
 
         <script src="js/main.js"></script>
     </body>

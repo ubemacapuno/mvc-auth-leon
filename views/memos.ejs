@@ -5,55 +5,67 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-        <h1>Memos</h1>
-        <h2>Hey <%= user.userName %>! Record Memos Here!</h2>
-
-        <form action="/memos/<%= memoItems._id %>" class="contact-form" method='POST'>          
-
-            <label>First Name: </label>
-            <input type="text" placeholder="First Name" name='firstName' required>
-
-            <label>Last Name: </label>
-            <input type="text" placeholder="Last Name" name='lastName' required>
-
-            <label>Email:</label>
-            <input type="email" placeholder="Contact Email" name='email' required>
-
-            <label>Date Connected:</label>
-            <input type='date' name='date' required>
-
-            <label>Company Name:</label>
-            <input type="text" placeholder="Company Name" name='companyName' required>
-
-            <label>Spark:</label>
-            <textarea name="spark" rows="5" cols="50" required></textarea>
-
-            <label>Follow-Up?</label>
-            <select name="followUp" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-
-            <label>Added on LinkedIN?</label>
-            <select name="addedOnLinkedIn" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-
-            <label>Added on Twitter?</label>
-            <select name="addedOnTwitter" required>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-
-            <input type="submit">
-        </form>
-
-        <a href="/logout">Logout</a>
-
-        <script src="js/main.js"></script>
+        <nav>
+            <h1>Memos</h1>
+            <!--Link for Memo-->
+            <ul>
+                <li><a class="button" href="/todos">Contacts</a></li>
+                <li><a class="button" href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="flex-wrapper">
+            <section>
+                <h2>Hey <%= user.userName %>, you have <%= left %> total memos!</h2>
+                <ul>
+                    <% memos.forEach( el => { %>
+                        <li class='todoItem' data-id='<%=el._id%>'>
+                            <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
+                            <span>Memo: <%= el.memo %></span>
+                            <span>Type of Connection: <%= el.typeOfConnection %></span>
+                            
+                            <span>High Points: <%= el.highPoints %></span>
+                            <!--Delete element-->        
+                            <span class='del-memo'> Delete </span>
+                        </li>
+                <% }) %>    
+                </ul>
+            </section>
+            
+            <section>
+                <form action="/memos/addMemo" class="contact-form" method='POST'> 
+                
+                    <label>Contact First Name: </label>
+                    <input type="text" placeholder="First Name" name='firstName' required>
+        
+                    <label>Contact Last Name: </label>
+                    <input type="text" placeholder="Last Name" name='lastName' required>
+        
+                    <label>Memo: </label>
+                    <textarea name="memo" rows="5" cols="50" required></textarea>
+        
+                    <label>Connection Type?</label>
+                    <select name="typeOfConnection" required>
+                        <option value="N/A">N/A</option>
+                        <option value="Virtual Coffee Chat">Virtual Coffee Chat</option>
+                        <option value="Virtual Coffee Chat">In-Person Chat</option>
+                    </select>
+        
+                    <label>Meeting High Points:</label>
+                    <input type="text" placeholder="Meeting High Points" name='highPoints' required>
+        
+                    <label>Date Connected:</label>
+                    <input type='date' name='dateOfConnection' required>
+        
+                    <input type="submit">
+                </form>
+            </section>
+        </div>
+        
+        <script src="../js/main.js"></script>
     </body>
 </html>
+<!-- Debug why css sheet isn't connecting - in the meantime: -->
