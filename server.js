@@ -9,6 +9,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
+const memoRoutes = require('./routes/memos')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -40,7 +41,10 @@ app.use(flash())
   
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
+
+//Memo route for adding memos:
+app.use('/memos', memoRoutes)
  
 app.listen(process.env.PORT, ()=>{
-    console.log('Server is running, check PORT 8500!')
+    console.log(`Server is running, check PORT ${process.env.PORT}!`)
 })    

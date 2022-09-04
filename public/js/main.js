@@ -1,4 +1,5 @@
 const deleteBtn = document.querySelectorAll('.del')
+const deleteBtnMemo = document.querySelectorAll('.del-memo')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 
@@ -16,6 +17,10 @@ const yesTwitter = document.querySelectorAll('span.yes-twitter')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
+})
+
+Array.from(deleteBtnMemo).forEach((el)=>{
+    el.addEventListener('click', deleteMemo)
 })
 
 Array.from(todoItem).forEach((el)=>{
@@ -61,6 +66,24 @@ async function deleteTodo(){
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
                 'todoIdFromJSFile': todoId
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function deleteMemo(){
+    const memoId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('memos/deleteMemo', {
+            method: 'delete',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'memoIdFromJSFile': memoId
             })
         })
         const data = await response.json()
