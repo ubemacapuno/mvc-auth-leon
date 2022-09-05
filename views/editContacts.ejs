@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <!--ICONS-->
+    </head>
+    <body>
+        <nav>
+            <h1>Contact List</h1>
+            <!--Link for Memo-->
+            <ul>
+                <li><a class="button" href="/todos">Contacts</a></li>
+                <li><a href="/memos" class="memos">Memos</a></li>
+                <li><a class="button" href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="flex-wrapper">
+                        
+           <section class="contact-form">
+            <% todos.forEach(el => { %>
+                <% if (el._id==idContact) { %>
+                <h2><%= user.userName %>, you may edit the details for <%= el.firstName %> below:</h2>     
+                <form action="/editContacts/<%= el._id %>" class="contact-form" method='POST'>          
+
+                    <label>First Name: </label>
+                    <input value="<%= el.firstName %>" type="text" placeholder="First Name" name='firstName' required>
+
+                    <label>Last Name: </label> 
+                    <input value="<%= el.lastName %>" type="text" placeholder="Last Name" name='lastName' required>
+
+                    <label>Email:</label> 
+                    <input value="<%= el.email %>" type="email" placeholder="Contact Email" name='email' required>
+
+                    <label>Company Name:</label> 
+                    <input value="<%= el.companyName %>" type="text" placeholder="Company Name" name='companyName' required>
+
+                    <label>Spark:</label>
+                    <textarea name="spark" rows="5" cols="50" required><%= el.spark %></textarea>
+
+                    <a class="button" href="/todos">Cancel</a>
+                    <input class="button" type="submit" value="Add">
+                </form>
+             </section>
+        </div>
+        
+        <% }})  %>
+        <script src="../js/main.js"></script>
+    </body>
+</html>
