@@ -17,16 +17,20 @@
         </nav>
         
         <div class="flex-wrapper">
-            <section>
+            <section class="memo-section">
                 <h2>Hey <%= user.userName %>, you have <%= left %> total memos!</h2>
                 <ul>
                     <% memos.forEach( el => { %>
-                        <li class='todoItem' data-id='<%=el._id%>'>
-                            <span>Name: <%= `${el.firstName} ${el.lastName}` %></span>
-                            <span>Memo: <%= el.memo %></span>
-                            <span>Type of Connection: <%= el.typeOfConnection %></span>
+                        <li class='todoItem memo-list' data-id='<%=el._id%>'>
+                            <span class="category">Name: </span><span><%= `${el.firstName} ${el.lastName}` %></span><br />
+
+                            <span class="category">Memo: </span><span><%= el.memo %></span><br />
                             
-                            <span>High Points: <%= el.highPoints %></span>
+                            <span class="category">Meeting Type: </span><span><%= el.typeOfConnection %></span><br />
+                            
+                            <span class="category">High Points: </span><span><%= el.highPoints %></span><br />
+
+                            <span class="category">Connected On: </span><span><%= el.dateOfConnection %></span><br />
                             <!--Delete element-->        
                             <span class='del-memo'> Delete </span>
                         </li>
@@ -46,11 +50,13 @@
                     <label>Memo: </label>
                     <textarea name="memo" rows="5" cols="50" required></textarea>
         
-                    <label>Connection Type?</label>
+                    <label>Meeting Type?</label>
                     <select name="typeOfConnection" required>
                         <option value="N/A">N/A</option>
                         <option value="Virtual Coffee Chat">Virtual Coffee Chat</option>
                         <option value="Virtual Coffee Chat">In-Person Chat</option>
+                        <option value="Virtual Coffee Chat">Direct Message</option>
+                        <option value="Virtual Coffee Chat">Other</option>
                     </select>
         
                     <label>Meeting High Points:</label>

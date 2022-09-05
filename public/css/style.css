@@ -38,11 +38,15 @@ small, .text_small {font-size: 0.8rem;}
 
 :root {
     --background-color: #6c6a93;
+    --background-color-alternate: #979797;
+    --background-color-alternate-2: #FFF740;
+    --background-color-alternate-3: #8fb8bc;
     --header-color: #09FFD4;
     --text-color: #3A3CA3;
     --bullet-color: #77F711;
     --pending-color: #411b22;
     --left-to-do-color: #F0AC26;
+    --category-color: #910087;
 }
 
 body{ /*Selects the body tag*/
@@ -52,24 +56,31 @@ body{ /*Selects the body tag*/
     align-items: center;
     flex-direction: column;
 }
+
 h1{ /*Selects h1 body tag*/
     color: var(--header-color); /*changes color*/
 }
+
 h2,span {
     color: var(--text-color);
 }
+
 ul {
     list-style: none; /* Remove default bullets */
 }
+
 .left-to-do{
     color: var(--left-to-do-color);
 }
+
 li {
     padding: 0.5rem 0;
 }
+
 li span {
     color: var(--pending-color);
 }
+
 .fa-trash {
     padding: 0 0.5rem;
     cursor: pointer;
@@ -80,8 +91,26 @@ li span {
     text-decoration: line-through; /*adds line-through*/
 }
 
-span {
-    display: block;
+.category {
+    display: inline;
+    font-weight: bold;
+    color: var(--category-color);
+}
+
+.contact-list {
+    border: 3px solid var(--category-color);
+    background-color: var(--background-color-alternate-3);
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+.memo-list {
+    border: 3px solid var(--category-color);
+    background-color: var(--background-color-alternate-2);
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin: 1rem;
 }
 
 .del, .memos, .del-memo, .button {
@@ -95,6 +124,10 @@ span {
     padding: 0.5rem;
     cursor: pointer;
     text-decoration: none;
+}
+
+.inline-button {
+    display: inline;
 }
 
 nav {
@@ -134,14 +167,20 @@ h1 {
 section {
     height: 1000px;
     overflow: auto;
+    background-color: var(--background-color-alternate);
+    padding: 1rem;
+}
+
+.memo-section, .contact-section {
+    max-width: 50%;
 }
 
 textarea { 
     resize: vertical; 
 }
 
-.contact-form input, .contact-form select, .contact-form button{
-    margin-bottom: 1rem;
+.contact-form input, .contact-form select, .contact-form button, textarea{
+    margin-bottom: 1.5rem;
 }
 
 /* classes for complete and incomplete */
