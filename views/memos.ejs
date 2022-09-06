@@ -12,16 +12,15 @@
             <h1>Memos</h1>
             <ul>
                 <li><a class="button" href="/todos">Contacts</a></li>
-                <li><a class="button" href="/logout">Logout</a></li>
+                <li><a class="logout" href="/logout">Logout</a></li>
             </ul>
         </nav>
-        
         <div class="flex-wrapper">
             <section class="memo-section">
                 <h2>Hey <%= user.userName %>, you have <%= left %> total memos!</h2>
                 <ul>
                     <% memos.forEach( el => { %>
-                        <li class='todoItem memo-list' data-id='<%=el._id%>'>
+                        <li class='memoItem' data-id='<%=el._id%>'>
                             <span class="category">Name: </span><span><%= `${el.firstName} ${el.lastName}` %></span><br />
 
                             <span class="category">Memo: </span><span><%= el.memo %></span><br />
@@ -34,12 +33,12 @@
                             <!--Delete element-->        
                             <span class='del-memo'> Delete </span>
                         </li>
-                <% }) %>    
+                    <% }) %>    
                 </ul>
             </section>
             
             <section class="contact-form">
-                <form action="/memos/addMemo" class="contact-form" method='POST'> 
+                <form action="/memos/addMemo" method='POST'> 
                 
                     <label>Contact First Name: </label>
                     <input type="text" placeholder="First Name" name='firstName' required>
@@ -65,7 +64,7 @@
                     <label>Date Connected:</label>
                     <input type='date' name='dateOfConnection' required>
         
-                    <input type="submit">
+                    <input class="button" type="submit">
                 </form>
             </section>
         </div>

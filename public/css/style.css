@@ -37,22 +37,27 @@ small, .text_small {font-size: 0.8rem;}
 /* End Type Scale */
 
 :root {
-    --background-color: #90c9e6;
+    --background-color: #418cb2;
     --background-color-alternate: #30638E;
     --background-color-alternate-2: #00AFB9;
     --background-color-alternate-3: #F07167;
+    --border-color: var(--background-color-alternate-3);
     --header-color: #09FFD4;
     --text-color: #3A3CA3;
     --bullet-color: #77F711;
     --pending-color: #411b22;
     --left-to-do-color: #F0AC26;
     --category-color: #910087;
+    --white: #FAF9F6;
     --palette-1: #EDAE49;
     --palette-2: #D1495B;
     --palette-3: #00798C;
     --palette-4: #30638e;
     --palette-5: #003D5B;
     --palette-6: #D1495B;
+    --palette-7: #002538;
+    --palette-8: #ffa8b4;
+    --palette-9: lime;
 }
 
 body{ /*Selects the body tag*/
@@ -64,17 +69,30 @@ body{ /*Selects the body tag*/
 }
 
 h1{ /*Selects h1 body tag*/
-    color: var(--palette-1); /*changes color*/
+    color: var(--palette-7); /*changes color*/
 }
 
-h2,span {
-    color: var(--background-color-alternate-3);
+label {
+    color: var(--palette-7);
+    font-weight: bold;
 }
 
+h2, span, li {
+    color: var(--white);
+}
 
 .contact-ul{
     width: 95%;
 }
+
+.memoItem {
+    border-top: 2px solid var(--palette-7);
+}
+
+.todoItem .category, .memoItem .category {
+    color: var(--palette-7);
+}
+
 
 ul {
     list-style: none;
@@ -91,19 +109,34 @@ li {
 }
 
 li span {
-    color: var(--pending-color);
+    color: var(--white);
+}
+
+.login-form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-form input {
+    margin-bottom: 2rem;
+}
+
+.login-form input button {
+    justify-self: center
 }
 
 .category {
     display: inline;
     font-weight: bold;
-    color: var(--palette-1);
+    color: var(--white);
 }
 
 .contact-list {
-    border: 3px solid var(--palette-1);
+    /* border: 3px solid var(--palette-1); */
     background-color: var(--palette-3);
-    border-radius: 15px;
+    /* border-radius: 15px; */
     padding: 0.5rem;
     margin: 1rem 0;
     width: 100%;
@@ -114,20 +147,50 @@ li span {
     background-color: var(--background-color-alternate-2);
     border-radius: 15px;
     padding: 0.5rem;
-    margin: 1rem;
+    margin: 1rem 0;
+    width: 100%;
 }
 
 .del, .memos, .del-memo, .button {
     display: block;
-    color: white;
-    border: 1px solid white;
+    color: var(--white);
+    border: 1px solid var(--white);
     width: 60px;
     text-align: center;
-    background-color: black;
+    background-color: var(--palette-7);
     margin: 1rem 0;
+    cursor: pointer;
     padding: 0.5rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout {
+    display: block;
+    color: var(--palette-7);
+    border: 1px solid var(--palette-7);
+    width: 60px;
+    text-align: center;
+    background-color: transparent;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     text-decoration: none;
+    transition: 0.3s;
+}
+
+.del:hover, .memos:hover, .del-memo:hover, .button:hover {
+    background-color: transparent;
+    border: 1px solid var(--palette-7);
+    color: var(--palette-7);
+    transform: scale(1.1);
+}
+
+.logout:hover {
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    transform: scale(1.1);
 }
 
 .inline-button {
@@ -160,6 +223,7 @@ h1 {
     margin: 1rem auto;
     font-weight: bold;
     border-bottom: 1px solid var(--pending-color);
+    color: var(--palette-1)
 }
 
 .flex-wrapper {
@@ -169,17 +233,34 @@ h1 {
     justify-content: space-evenly;
 }
 
-.contact-form{
+.contact-form {
     max-width: 500px;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--palette-3);
+    border: 3px solid var(--white);
+}
+
+.contact-section {
+    background-image: linear-gradient(to right, var(--palette-5) , var(--background-color-alternate));
+    border: 3px solid var(--white);
+}
+
+.memo-section {
+    background-color: var(--palette-1);
+    height: 100%;
+    border: 3px solid var(--white);
+}
+
+.memo-section h2 {
+    color: var(--palette-2);
 }
 
 section {
     height: 1000px;
     overflow: auto;
-    background-image: linear-gradient(to right, var(--background-color-alternate) , var(--palette-3));
     padding: 1rem;
     border-radius: 20px;
 }
@@ -204,11 +285,13 @@ textarea {
 
 /* classes for complete and incomplete */
 .completed, .yes-follow-up, .yes-linkedin, .yes-twitter {
-    color: lime;
+    color: var(--palette-9);
+    cursor: pointer;
 }
 
 .not, .no-follow-up, .no-linkedin, .no-twitter {
-    color: var(--palette-1);
+    color: var(--palette-8);
+    cursor: pointer;
 }
 
 .no-follow-up::after, .no-linkedin::after, .no-twitter::after {
@@ -220,6 +303,10 @@ textarea {
 }
 
 @media screen and (max-width: 1170px) {
+
+    h1 {
+        text-align: center;
+    }
 
     .user-heading {
         margin: 0 auto;
