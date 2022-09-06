@@ -48,12 +48,4 @@ module.exports = {
             console.log(err)
         }
     }
-    //Delete controller from Mayan Wolfe MVC - maybe try this?
-    // deleteMemo: (req, res)=>{
-    //     const id = req.params.id
-    //     Memo.findByIdAndRemove(id, err => {
-    //         if (err) return res.status(500).send(err)
-    //         res.redirect('/')
-    //     })
-    // }
 }

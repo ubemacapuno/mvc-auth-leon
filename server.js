@@ -10,6 +10,7 @@ const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
 const memoRoutes = require('./routes/memos')
+const editContactRoutes = require('./routes/editContacts')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -44,6 +45,9 @@ app.use('/todos', todoRoutes)
 
 //Memo route for adding memos:
 app.use('/memos', memoRoutes)
+
+//editContact route for adding memos:
+app.use('/editContacts', editContactRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is running, check PORT ${process.env.PORT}!`)
