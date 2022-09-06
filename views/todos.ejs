@@ -24,6 +24,7 @@
                 <h2 class="user-heading">Welcome, <%= user.userName %></h2>
                 <ul class="contact-ul">
                     <li class="user-heading"> You have <%= left %> contacts.</li>
+                    <li class="user-heading"> You are on a <%= streak %> day streak. Keep it going!</li>
                 <% todos.forEach( el => { %>
                     <li class='todoItem contact-list' data-id='<%=el._id%>'>
                         <span class="category">Name:</span><span> <%= `${el.firstName} ${el.lastName}` %></span><br />
