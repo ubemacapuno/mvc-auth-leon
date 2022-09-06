@@ -21,8 +21,9 @@
         <div class="flex-wrapper">
                         
            <section class='contact-section'>
-                <h2>Hey <%= user.userName %>, you have <%= left %> contacts!</h2>
-                <ul>
+                <h2 class="user-heading">Welcome, <%= user.userName %></h2>
+                <ul class="contact-ul">
+                    <li class="user-heading"> You have <%= left %> contacts.</li>
                 <% todos.forEach( el => { %>
                     <li class='todoItem contact-list' data-id='<%=el._id%>'>
                         <span class="category">Name:</span><span> <%= `${el.firstName} ${el.lastName}` %></span><br />
@@ -31,12 +32,14 @@
                         <span class="category">Company:</span><span> <%= el.companyName %></span><br />
                         <span class="category">Spark:</span><span> <%= el.spark %></span><br />
 
+                        <h5 class="actions-header">Actions</h5>
+
                         <!-- If value is "yes", then apply 'yes-to-follow-up' class, otherwise no-follow-up-->
-                        <span id='#follow-up' class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span><br />
+                        <span class='<%= el.followUp === "Yes" ? 'yes-follow-up' : 'no-follow-up'%>'>Follow Up</span><br />
 
-                        <span id='#linkedin' class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added on Linkedin</span><br />
+                        <span class='<%= el.addedOnLinkedIn === "Yes" ? 'yes-linkedin' : 'no-linkedin'%>'>Added on Linkedin</span><br />
 
-                        <span id='#twitter' class='<%= el.addedOnTwitter === "Yes" ? 'yes-twitter' : 'no-twitter'%>'>Added on Twitter</span><br />
+                        <span class='<%= el.addedOnTwitter === "Yes" ? 'yes-twitter' : 'no-twitter'%>'>Added on Twitter</span><br />
 
                         <!-- <span>Added on Twitter: <%= el.addedOnTwitter %></span> -->
 
