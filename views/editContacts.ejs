@@ -25,7 +25,7 @@
             <% todos.forEach(el => { %>
                 <% if (el._id==idContact) { %>
                 <h2><%= user.userName %>, you may edit the details for <%= el.firstName %> below:</h2>     
-                <form action="/editContacts/<%= el._id %>" class="contact-form" method='POST'>          
+                <form action="/editContacts/<%= el._id %>" method='POST'>          
 
                     <label>First Name: </label>
                     <input value="<%= el.firstName %>" type="text" placeholder="First Name" name='firstName' required>

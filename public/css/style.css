@@ -37,16 +37,27 @@ small, .text_small {font-size: 0.8rem;}
 /* End Type Scale */
 
 :root {
-    --background-color: #6c6a93;
-    --background-color-alternate: #979797;
-    --background-color-alternate-2: #FFF740;
-    --background-color-alternate-3: #8fb8bc;
+    --background-color: #418cb2;
+    --background-color-alternate: #30638E;
+    --background-color-alternate-2: #00AFB9;
+    --background-color-alternate-3: #F07167;
+    --border-color: var(--background-color-alternate-3);
     --header-color: #09FFD4;
     --text-color: #3A3CA3;
     --bullet-color: #77F711;
     --pending-color: #411b22;
     --left-to-do-color: #F0AC26;
     --category-color: #910087;
+    --white: #FAF9F6;
+    --palette-1: #EDAE49;
+    --palette-2: #D1495B;
+    --palette-3: #00798C;
+    --palette-4: #30638e;
+    --palette-5: #003D5B;
+    --palette-6: #D1495B;
+    --palette-7: #002538;
+    --palette-8: #ffa8b4;
+    --palette-9: lime;
 }
 
 body{ /*Selects the body tag*/
@@ -58,19 +69,39 @@ body{ /*Selects the body tag*/
 }
 
 h1{ /*Selects h1 body tag*/
-    color: var(--header-color); /*changes color*/
+    color: var(--palette-7); /*changes color*/
 }
 
-h2,span {
-    color: var(--text-color);
+label {
+    color: var(--palette-7);
+    font-weight: bold;
 }
+
+h2, span, li {
+    color: var(--white);
+}
+
+.contact-ul{
+    width: 95%;
+}
+
+.memoItem {
+    border-top: 2px solid var(--palette-7);
+}
+
+.todoItem .category, .memoItem .category {
+    color: var(--palette-7);
+}
+
 
 ul {
-    list-style: none; /* Remove default bullets */
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .left-to-do{
-    color: var(--left-to-do-color);
+    color: var(--palette-2);
 }
 
 li {
@@ -78,31 +109,37 @@ li {
 }
 
 li span {
-    color: var(--pending-color);
+    color: var(--white);
 }
 
-.fa-trash {
-    padding: 0 0.5rem;
-    cursor: pointer;
+.login-form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.completed{/*Selects completed class*/
-    color: var(--bullet-color);  /*changes background-color*/
-    text-decoration: line-through; /*adds line-through*/
+.login-form input {
+    margin-bottom: 2rem;
+}
+
+.login-form input button {
+    justify-self: center
 }
 
 .category {
     display: inline;
     font-weight: bold;
-    color: var(--category-color);
+    color: var(--white);
 }
 
 .contact-list {
-    border: 3px solid var(--category-color);
-    background-color: var(--background-color-alternate-3);
-    border-radius: 15px;
+    /* border: 3px solid var(--palette-1); */
+    background-color: var(--palette-3);
+    /* border-radius: 15px; */
     padding: 0.5rem;
-    margin: 1rem;
+    margin: 1rem 0;
+    width: 100%;
 }
 
 .memo-list {
@@ -110,20 +147,50 @@ li span {
     background-color: var(--background-color-alternate-2);
     border-radius: 15px;
     padding: 0.5rem;
-    margin: 1rem;
+    margin: 1rem 0;
+    width: 100%;
 }
 
 .del, .memos, .del-memo, .button {
     display: block;
-    color: white;
-    border: 1px solid white;
+    color: var(--white);
+    border: 1px solid var(--white);
     width: 60px;
     text-align: center;
-    background-color: black;
+    background-color: var(--palette-7);
     margin: 1rem 0;
+    cursor: pointer;
     padding: 0.5rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout {
+    display: block;
+    color: var(--palette-7);
+    border: 1px solid var(--palette-7);
+    width: 60px;
+    text-align: center;
+    background-color: transparent;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     text-decoration: none;
+    transition: 0.3s;
+}
+
+.del:hover, .memos:hover, .del-memo:hover, .button:hover {
+    background-color: transparent;
+    border: 1px solid var(--palette-7);
+    color: var(--palette-7);
+    transform: scale(1.1);
+}
+
+.logout:hover {
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    transform: scale(1.1);
 }
 
 .inline-button {
@@ -151,6 +218,14 @@ h1 {
     flex: 1;
 }
 
+.actions-header {
+    padding: 0 auto;
+    margin: 1rem auto;
+    font-weight: bold;
+    border-bottom: 1px solid var(--pending-color);
+    color: var(--palette-1)
+}
+
 .flex-wrapper {
     width: 100%;
     display: flex;
@@ -158,21 +233,45 @@ h1 {
     justify-content: space-evenly;
 }
 
-.contact-form{
-    width: 500px;
+.contact-form {
+    max-width: 500px;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--palette-3);
+    border: 3px solid var(--white);
+}
+
+.contact-section {
+    background-image: linear-gradient(to right, var(--palette-5) , var(--background-color-alternate));
+    border: 3px solid var(--white);
+}
+
+.memo-section {
+    background-color: var(--palette-1);
+    height: 100%;
+    border: 3px solid var(--white);
+}
+
+.memo-section h2 {
+    color: var(--palette-2);
 }
 
 section {
     height: 1000px;
     overflow: auto;
-    background-color: var(--background-color-alternate);
     padding: 1rem;
+    border-radius: 20px;
 }
 
 .memo-section, .contact-section {
-    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 2rem;
+    overflow: auto;
 }
 
 textarea { 
@@ -181,15 +280,18 @@ textarea {
 
 .contact-form input, .contact-form select, .contact-form button, textarea{
     margin-bottom: 1.5rem;
+    width: 95%;
 }
 
 /* classes for complete and incomplete */
 .completed, .yes-follow-up, .yes-linkedin, .yes-twitter {
-    color: lime;
+    color: var(--palette-9);
+    cursor: pointer;
 }
 
 .not, .no-follow-up, .no-linkedin, .no-twitter {
-    color: rgb(121, 0, 0);
+    color: var(--palette-8);
+    cursor: pointer;
 }
 
 .no-follow-up::after, .no-linkedin::after, .no-twitter::after {
@@ -198,4 +300,61 @@ textarea {
 
 .yes-follow-up::after, .yes-linkedin::after, .yes-twitter::after {
     content: ' - Completed!'
+}
+
+@media screen and (max-width: 1170px) {
+
+    h1 {
+        text-align: center;
+    }
+
+    .user-heading {
+        margin: 0 auto;
+        padding: 0 auto;
+        text-align: center;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex-wrapper{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .memo-section, .contact-section, .contact-form {
+        margin: 0 auto;
+        padding: 0 auto;
+        max-width: 700px;
+        width: 90%;
+    }
+
+    .memo-section {
+        justify-content: flex-start;
+        height: 100%;
+    }
+
+    .contact-section {
+        align-items: center;
+        height: 100%;
+    }
+
+    .contact-form {
+        margin-top: 2rem;
+        height:100%;
+    }
+
+    .contact-list{
+        padding: 1rem auto;
+        margin: 2rem auto;
+        width: 95%;
+        
+    }
+
+	
 }
