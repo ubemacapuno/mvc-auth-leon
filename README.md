@@ -50,6 +50,7 @@ $ yarn
 
 # Start development server
 $ yarn dev 
+```
 
 ---
 
@@ -58,10 +59,9 @@ $ yarn dev
 - Create a `.env` file and add the following as `key: value` 
   - PORT: 2121 (can be any port example: 3000) 
   - DB_STRING: `your database URI` 
- ---
+---
  
-
- ## Optimizations:
+## Optimizations:
 
 This application is in a minimal viable product state and is not commercial-ready. 
 In the future:
