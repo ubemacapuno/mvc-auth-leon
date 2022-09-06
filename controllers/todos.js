@@ -7,13 +7,43 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, streak: req.user.activityStreak})
+            console.log(`Activity streak is ${req.user.activityStreak}`)
         }catch(err){
             console.log(err)
         }
     },
     createTodo: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.create(
                 {
                     todo: req.body.todoItem, 
@@ -36,7 +66,36 @@ module.exports = {
         }
     },
     markComplete: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 completed: true
             })
@@ -48,7 +107,36 @@ module.exports = {
         }
     },
     markIncomplete: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 completed: false
             })
@@ -63,7 +151,36 @@ module.exports = {
     // markYesFollowUp, markNoFollowUp controllers
 
     markYesFollowUp: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 followUp: "Yes"
             })
@@ -75,7 +192,36 @@ module.exports = {
         }
     },
     markNoFollowUp: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 followUp: "No"
             })
@@ -90,7 +236,36 @@ module.exports = {
     // markYesLinkedin, markNoLinkedin controllers
 
     markYesLinkedin: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 addedOnLinkedIn: "Yes"
             })
@@ -102,7 +277,36 @@ module.exports = {
         }
     },
     markNoLinkedin: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 addedOnLinkedIn: "No"
             })
@@ -117,7 +321,36 @@ module.exports = {
     // markYesTwitter, markTwitter controllers
 
     markYesTwitter: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 addedOnTwitter: "Yes"
             })
@@ -129,13 +362,128 @@ module.exports = {
         }
     },
     markNoTwitter: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
         try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
             await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 addedOnTwitter: "No"
             })
             console.log({_id:req.body.todoIdFromJSFile})
             console.log('Marked No Twitter')
             res.json('Marked No Twitter')
+        }catch(err){
+            console.log(err)
+        }
+    },
+
+    //Follow-Up:
+    markYesFollowUp: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
+        try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
+
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                followUp: "Yes"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked Yes Follow Up')
+            res.json('Marked Yes Follow Up')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markNoFollowUp: async (req, res)=>{
+        const today = new Date()
+        const dateToModify = new Date()
+        let yesterday = dateToModify.setDate(dateToModify.getDate() - 1)
+        try{
+            if(req.user.lastDayOfActivity < yesterday){
+                await User.findByIdAndUpdate(id,{
+                    activityStreak: 1,
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Restarted to 1')
+            }
+            else if(req.user.lastDayOfActivity < today){
+                await User.findByIdAndUpdate(id,{
+                    $inc: { activityStreak: + 1},
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Streak Updated')
+            }
+            else if(req.user.lastDayOfActivity === today){
+                await User.findByIdAndUpdate(id,{
+                    lastDayOfActivity: new Date()
+                },{
+                    returnOriginal: false
+                })
+                console.log('Ongoing Streak')
+            }
+
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                followUp: "No"
+            })
+            console.log({_id:req.body.todoIdFromJSFile})
+            console.log('Marked No Follow Up')
+            res.json('Marked No Follow Up')
         }catch(err){
             console.log(err)
         }

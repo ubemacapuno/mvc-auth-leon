@@ -25,4 +25,10 @@ router.put('/markNoTwitter', todosController.markNoTwitter)
 
 router.delete('/deleteTodo', todosController.deleteTodo)
 
+//Follow-up Routes:
+
+router.put('/markYesFollowUp', todosController.markYesFollowUp)
+
+router.put('/markNoFollowUp', todosController.markNoFollowUp)
+
 module.exports = router
